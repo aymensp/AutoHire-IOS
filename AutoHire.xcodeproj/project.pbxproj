@@ -16,6 +16,7 @@
 		543A99A42564096C00A9306B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 543A99A22564096C00A9306B /* LaunchScreen.storyboard */; };
 		543A99AF2564096C00A9306B /* AutoHireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A99AE2564096C00A9306B /* AutoHireTests.swift */; };
 		543A99BA2564096C00A9306B /* AutoHireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A99B92564096C00A9306B /* AutoHireUITests.swift */; };
+		5475A43D2565507D00F4383D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475A43C2565507D00F4383D /* LoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		543A99B52564096C00A9306B /* AutoHireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoHireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		543A99B92564096C00A9306B /* AutoHireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoHireUITests.swift; sourceTree = "<group>"; };
 		543A99BB2564096C00A9306B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5475A43C2565507D00F4383D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				543A99942564096B00A9306B /* AppDelegate.swift */,
 				543A99962564096B00A9306B /* SceneDelegate.swift */,
 				543A99982564096B00A9306B /* ViewController.swift */,
+				5475A43C2565507D00F4383D /* LoginController.swift */,
 				543A999A2564096B00A9306B /* Main.storyboard */,
 				543A99A02564096C00A9306B /* Assets.xcassets */,
 				543A99A22564096C00A9306B /* LaunchScreen.storyboard */,
@@ -266,6 +269,7 @@
 				543A99952564096B00A9306B /* AppDelegate.swift in Sources */,
 				543A999F2564096B00A9306B /* AutoHire.xcdatamodeld in Sources */,
 				543A99972564096B00A9306B /* SceneDelegate.swift in Sources */,
+				5475A43D2565507D00F4383D /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
