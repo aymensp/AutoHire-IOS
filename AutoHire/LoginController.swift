@@ -13,6 +13,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var loginn: UIButton!
     @IBOutlet weak var Password: UITextField!
     @IBOutlet weak var Email: UITextField!
+    var user : Dictionary<String,Any> = [:]
+    var IsLoggedin : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,40 +45,89 @@ class LoginController: UIViewController {
         
         AF.request("http://localhost:3000/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseString { response in
-               
-                print(response.value)
-
+                             
                 if response.value != nil
                 {
 
                     
-                        self.performSegue(withIdentifier: "auth", sender: self)
+                    self.performSegue(withIdentifier: "auth", sender: self)
                           
+                    let defaults = UserDefaults.standard
+                    defaults.setValue(userName!, forKey: "usernameUser")
                     
+                    self.IsLoggedin = true
+                    let parameterss: [String: Any] = [
+                        "username" : userName
+                                                
+                        
+                    ]
+                    AF.request("http://localhost:3000/user/me", method: .post, parameters: parameterss, encoding: JSONEncoding.default)
+                        .responseJSON { response in
+                                         
+                            let statusCode = response.response?.statusCode
+                          
+                            
+                            if statusCode == 200
+                              {
+                                
+                                let item = response.value as! Dictionary<String,Any>
+                                
+                                let id = item["id"] as? Int
+                                let email = item["email"] as? String
+                                let defaults = UserDefaults.standard
+                                defaults.setValue(id!, forKey: "idUser")
+                                defaults.setValue(email!, forKey: "emailUser")
+                                
+                                
+                              }
+                              else {
+                                
+                                print("Username already exists")
+                              }
+                            }
+                        
                     
                     }
                 
                 else {
                     
-                    
-                    
                     print("check your password or username")
                     
                     
+                    
                 }
                     
                 }
+    
+      
+            
+     
+            
+            
+        }
+        
                 
                 
                 
     }
         
         
+    
+
+    
+    
+    
+
+    
+        
+        
+        
+    
        
         
         
         
-    }
+    
     
     
 
