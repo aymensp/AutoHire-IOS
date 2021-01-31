@@ -16,7 +16,7 @@ import CoreLocation
 
 class OffreController : UITableViewController ,CLLocationManagerDelegate{
  
-    
+    let baseUrl = Common.Global.LOCAL + "/"
    
     var p : Int = 2
     var testBool = false
@@ -65,19 +65,26 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
                }
         
         
-       getData()
         testBool = true
-        tableView.reloadData()
-        
+        switch p {
+        case 0:
+            getData()
       
+        case 1:
+            getDataParAddress()
+           
+        default :
+            
+            getData()
+           
+        }
+        tableView.reloadData()
+                 
      
-        
-     
-        
             }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
             if let location = locations.first {
-                print(location.coordinate)
+                
                 self.Lat = String(location.coordinate.latitude)
                 self.Lon = String(location.coordinate.longitude)
             }
@@ -139,15 +146,38 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
         let date = container!.viewWithTag(5) as! UILabel
       
         titre.text = item["titre"] as? String 
-        industry.text = item ["company"] as? String
-        address.text = item ["address"] as? String
-        date.text = item ["date"] as? String
+        industry.text = item["company"] as? String
+        address.text = item["address"] as? String
        
+       
+        
+        let hamma = item["createdAt"] as? String
+        let lastDate = String(hamma!.prefix(10))
+        let startDate = Date()
+        
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+
+        if let endDate = formatter.date(from: lastDate) {
+            let components = Calendar.current.dateComponents([.day], from: endDate, to: startDate)
+            if (components.day!) != 0 {
+            date.text = "Posted \(components.day!) days ago "
+            }
+            else {
+                date.text = "Today "
+            }
+        } else {
+            print("\(lastDate) can't be converted to a Date")
+        }
+      
+        image.image = UIImage(named: industry.text!)
         
         
         return cell
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let index = sender as? NSIndexPath
         if segue.identifier == "toDetails"{
         
@@ -155,17 +185,17 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
   
         let id = product["id"] as! Int
         let titre = product["titre"] as! String
-        let industry = product["industry"] as! String
+        let industry = product["company"] as! String
         let description = product["description"] as! String
         let adress = product["address"] as! String
         let poste = product["poste"] as! String
         let jobTime = product["jobTime"] as! String
         let salary = product["salary"] as! Int
-        let type = product["company"] as! String
+        let type = product["creator"] as! String
     
         let date = product["createdAt"] as! String
         
-            print(product)
+           
         
         
        
@@ -192,8 +222,7 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
     
     @IBAction func switchCustom(_ sender: UISegmentedControl) {
    
-      p = sender.selectedSegmentIndex
-        
+        p = sender.selectedSegmentIndex
         switch p {
         case 0:
             getData()
@@ -206,14 +235,14 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
             getData()
            
         }
-        self.tableView.reloadData()
-    
+        tableView.reloadData()
+        
     }
     
   
     func getData(){
         self.data = []
-        AF.request("http://localhost:3000/offre/All/Offre" , method: .get ).responseJSON { response in
+        AF.request(self.baseUrl+"offre/All/Offre" , method: .get ).responseJSON { response in
 
             
             
@@ -240,11 +269,12 @@ class OffreController : UITableViewController ,CLLocationManagerDelegate{
         let parametrs : Dictionary < String , Any > = [
         
             "long" : self.Lon ,
-            "latt" :   self.Lat
+            "latt" : self.Lat
     
             
         ]
-        AF.request("http://localhost:3000/offre/" , method: .post , parameters: parametrs , encoding: JSONEncoding.default ).responseJSON { response in
+       
+        AF.request(self.baseUrl+"offre/" , method: .post , parameters: parametrs , encoding: JSONEncoding.default ).responseJSON { response in
 
             var statusCode = response.response?.statusCode
         

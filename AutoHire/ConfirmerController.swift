@@ -15,7 +15,7 @@ class ConfirmerController : UIViewController,UIImagePickerControllerDelegate, UI
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var username: UITextField!
-    
+    let baseUrl = Common.Global.LOCAL + "/"
     @IBOutlet weak var updloadImage: UIImageView!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var address: UITextField!
@@ -133,7 +133,7 @@ class ConfirmerController : UIViewController,UIImagePickerControllerDelegate, UI
         
         
         
-        AF.request("http://localhost:3000/user/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        AF.request(self.baseUrl+"user/", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseString { response in
                
                 print(response.value)
@@ -175,7 +175,7 @@ class ConfirmerController : UIViewController,UIImagePickerControllerDelegate, UI
 
         }
           
-        },  to:"http://localhost:3000/uploadImage", method: .post, headers: headers).response { resp in
+        },  to:self.baseUrl+"uploadImage", method: .post, headers: headers).response { resp in
           
                      
             switch resp.result{

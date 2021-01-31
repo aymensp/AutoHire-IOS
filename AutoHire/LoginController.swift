@@ -1,19 +1,24 @@
-//
+
+
 //  LoginController.swift
 //  AutoHire
-//
+
+
 //  Created by ESPRIT on 11/18/20.
 //  Copyright © 2020 ESPRIT. All rights reserved.
 //
 
 import UIKit
 import Alamofire
+import PKHUD
 class LoginController: UIViewController {
 
+    
     @IBOutlet weak var loginn: UIButton!
     @IBOutlet weak var Password: UITextField!
     @IBOutlet weak var Email: UITextField!
     var user : Dictionary<String,Any> = [:]
+    let baseUrl = Common.Global.LOCAL + "/"
     var IsLoggedin : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,9 @@ class LoginController: UIViewController {
         Email.layer.cornerRadius=25.0
         Password.layer.cornerRadius=25.0
         // Do any additional setup after loading the view.
+        let defaults = UserDefaults.standard
+        let idValue = defaults.string(forKey: "idUser")
+       
         
     }
     
@@ -43,7 +51,7 @@ class LoginController: UIViewController {
         
         
         
-        AF.request("http://localhost:3000/auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        AF.request(self.baseUrl+"auth/login", method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseString { response in
                              
                 if response.value != nil
@@ -61,7 +69,7 @@ class LoginController: UIViewController {
                                                 
                         
                     ]
-                    AF.request("http://localhost:3000/user/me", method: .post, parameters: parameterss, encoding: JSONEncoding.default)
+                    AF.request(self.baseUrl+"user/me", method: .post, parameters: parameterss, encoding: JSONEncoding.default)
                         .responseJSON { response in
                                          
                             let statusCode = response.response?.statusCode
@@ -91,7 +99,8 @@ class LoginController: UIViewController {
                 
                 else {
                     
-                    print("check your password or username")
+                    HUD.flash(.labeledError(title: "Error", subtitle: "Check Your Password and Username") , delay: 2.0)
+                    
                     
                     
                     

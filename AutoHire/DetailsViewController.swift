@@ -13,11 +13,11 @@ import SwiftyJSON
 import CoreData
 import PKHUD
 
+import MapKit
 
-
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-    
+    let baseUrl = Common.Global.LOCAL + "/"
     var id : Int?
     var salary : Int?
     var titre  : String?
@@ -28,9 +28,12 @@ class DetailsViewController: UIViewController {
     var address  : String?
     var poste  : String?
     var datee : String?
-    
+    let locationManager = CLLocationManager()
+
+    @IBOutlet var map: MKMapView!
     @IBOutlet weak var SALary: UILabel!
     @IBOutlet weak var INdustry: UILabel!
+    @IBOutlet var ABOUT: UITextView!
     @IBOutlet weak var FUnction: UILabel!
     @IBOutlet weak var EMployment: UILabel!
     @IBOutlet weak var save: UIButton!
@@ -43,6 +46,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var saveee: UIButton!
     
     @IBOutlet weak var COmpany: UILabel!
+    @IBOutlet var imagee: UIImageView!
+    @IBOutlet weak var textViewHCDesc: NSLayoutConstraint!
     override func viewDidLoad() {
     
         super.viewDidLoad()
@@ -54,14 +59,63 @@ class DetailsViewController: UIViewController {
         
         
         DEscription.text = Description
-        COmpany.text = type
+        
+        COmpany.text = industry
         addressss.text = address
         TItre.text = titre
+        TItre.adjustsFontSizeToFitWidth = true
         EMployment.text = jobtime
         FUnction.text = poste
         INdustry.text = industry
+        let defaults = UserDefaults.standard
+      let hamma =   defaults.string(forKey: "usernameUser")
+   
+        if type == hamma {
+            applyyy.isHidden = true
+            save.isHidden = true
+        }
+        switch industry {
+        case "esprit":
+            ABOUT.text = "ESPRIT est une école de formation d'ingénieur dirigée par un directeur qui appartient au corps enseignant de l'enseignement supérieur conformément à la règlementation en vigueur."
+            
+        case "vermeg":
+            ABOUT.text = "For VERMEG, being a responsible business lies at the heart of our human adventure and the very essence of the engaged software company we aim to be for all of our stakeholders."
+        case "ebay":
+            ABOUT.text = "eBay is one of the world’s largest online marketplaces, connecting people with the things they need and love virtually anytime, anywhere. eBay has 157 million active users globally and more than 800 million live individual and merchant listings at any given time, the majority of which is new and fixed-price merchandise."
+        case "microsoft":
+            ABOUT.text = "At Microsoft, our mission is to empower every person and every organization on the planet to achieve more. Our mission is grounded in both the world in which we live and the future we strive to create. Today, we live in a mobile-first, cloud-first world, and the transformation we are driving across our businesses is designed to enable Microsoft and our customers to thrive in this world. "
+        case "apple":
+            ABOUT.text = "We’re a diverse collective of thinkers and doers, continually reimagining what’s possible to help us all do what we love in new ways. And the same innovation that goes into our products also applies to our practices — strengthening our commitment to leave the world better than we found it. This is where your work can make a difference in people’s lives. Including your own."
+        case "convergen":
+            ABOUT.text = "Convergen is a digital and creative agency providing intelligent ad solutions that grow brands through their website performance."
+            
+        default :
+            ABOUT.text = " "
+        }
         SALary.text = String(salary!)
+        imagee.image = UIImage(named: industry!)
+        self.locationManager.requestAlwaysAuthorization()
+
+            // For use in foreground
+            self.locationManager.requestWhenInUseAuthorization()
         
+
+
+            if CLLocationManager.locationServicesEnabled() {
+                locationManager.delegate = self
+                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                locationManager.startUpdatingLocation()
+            }
+
+        map.delegate = self
+        map.mapType = .standard
+        map.isZoomEnabled = true
+        map.isScrollEnabled = true
+        self.map.showsUserLocation = true
+
+            if let coor = map.userLocation.location?.coordinate{
+                map.setCenter(coor, animated: true)
+            }
         
     }
     
@@ -75,7 +129,7 @@ class DetailsViewController: UIViewController {
                                     
             
         ]
-        AF.request("http://localhost:3000/offre/apply/new", method: .post, parameters: parameterss, encoding: JSONEncoding.default)
+        AF.request(self.baseUrl+"offre/apply/new", method: .post, parameters: parameterss, encoding: JSONEncoding.default)
             .responseJSON { response in
                              
                 let statusCode = response.response?.statusCode
@@ -84,13 +138,19 @@ class DetailsViewController: UIViewController {
                 if statusCode == 200
                   {
                     
-                    HUD.flash(.success , delay: 1.0)
-                    
+                  
+                    HUD.flash(.labeledSuccess(title: "Success", subtitle: "Prepare for your interview now"), delay: 3.0)
+                    self.performSegue(withIdentifier: "Interview", sender: self)
                     
                   }
                   else {
                     
-                    print("You are already applied for this offer")
+                    
+                      let alert = UIAlertController(title: "Alerte", message: "You Have already applied for this job , check your applications list ", preferredStyle: .alert)
+                      let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                      alert.addAction(action)
+                      self.present(alert,animated: true,completion: nil)
+                    
                   }
                 }
         
@@ -133,7 +193,7 @@ class DetailsViewController: UIViewController {
                       do {
                           try context.save()
                           HUD.flash(.success , delay: 1.0)
-                          print ("Offre Saved !!")
+                         
                       } catch {
                           print("Error !")
                       }
@@ -150,6 +210,23 @@ class DetailsViewController: UIViewController {
                 
                   print("error")
               }
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+
+        map.mapType = MKMapType.standard
+
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        map.setRegion(region, animated: true)
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = "You are here"
+        annotation.subtitle = "current location"
+        map.addAnnotation(annotation)
+
+        //centerMap(locValue)
     }
     
 }

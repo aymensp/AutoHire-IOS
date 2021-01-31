@@ -21,23 +21,22 @@ class ProfileController : UIViewController {
     @IBOutlet weak var addressUser: UILabel!
     @IBOutlet weak var posteUser: UILabel!
     @IBOutlet weak var NameUser: UILabel!
-
     @IBOutlet weak var adresss: UILabel!
     @IBOutlet weak var About: UIView!
     @IBOutlet weak var phoneUser: UITextView!
     @IBOutlet weak var emailUser: UILabel!
     var id : Int?
     @IBOutlet weak var contact: UIView!
-    
+    let baseUrl = Common.Global.LOCAL + "/"
  
-     var urlKey = "file:///Users/admin/Desktop/final/uploads/"
+     var urlKey = "file:///Users/ayman/Desktop/Mini/AutoHireBack/uploads/"
 
+   
+
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         getData()
-        
         if let url = URL(string: urlKey){
                   
                   do {
@@ -52,6 +51,22 @@ class ProfileController : UIViewController {
               }
       
     }
+    override func viewWillAppear(_ animated: Bool) {
+       super.viewWillAppear(animated)
+       viewLoadSetup()
+
+    }
+
+
+     func viewLoadSetup(){
+        About.isHidden = false
+      
+       
+        getData()
+        imageUser.layer.cornerRadius = 50.0
+        imageUser.clipsToBounds = true
+       
+     }
     
   
     func getData() {
@@ -62,10 +77,10 @@ class ProfileController : UIViewController {
         let parameters: [String: Any] = [
             "username" : idValue 
         ]
-        AF.request("http://localhost:3000/user/me/"  , method: .post , parameters: parameters , encoding: JSONEncoding.default ).responseJSON { response in
+        AF.request(self.baseUrl+"user/me/"  , method: .post , parameters: parameters , encoding: JSONEncoding.default ).responseJSON { response in
 
-            self.user  = response.value as! Dictionary < String,Any >
-            print(response.value)
+            self.user  = response.value as! Dictionary < String, Any >
+           
       
             self.id = self.user["id"] as? Int
             self.NameUser.text = self.user["username"] as? String
@@ -75,7 +90,7 @@ class ProfileController : UIViewController {
          
             self.adresss.text = self.user["address"] as? String
             let numero = self.user["phoneNumber"] as! Int
-            print(numero)
+           
             self.phoneUser.text =  String(numero)
             self.emailUser.text = self.user["email"] as? String
             self.educationUser.text = self.user["education"] as? String
@@ -104,7 +119,7 @@ class ProfileController : UIViewController {
             if let destinationVC =  segue.destination as? UpdateProfileController{
                 
                 destinationVC.Id = self.id
-               
+                
                 
                 
             }

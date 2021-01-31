@@ -1,16 +1,16 @@
 //
-//  FavController.swift
+//  MyJobs.swift
 //  AutoHire
 //
-//  Created by Admin on 12/9/20.
+//  Created by Aymen Smati on 12/29/20.
 //  Copyright © 2020 ESPRIT. All rights reserved.
 //
 
-import Foundation
 import  UIKit
-import CoreData
 
-class FavController : UITableViewController {
+
+class MyJobs : UITableViewController  {
+    
     
     
     var OffreArray : [NSManagedObject] = []
@@ -29,7 +29,7 @@ class FavController : UITableViewController {
     
    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let offre = OffreArray[indexPath.row]
-         
+
          let cell = tableView.dequeueReusableCell(withIdentifier: "FavOffre", for: indexPath)
          let content = cell.viewWithTag(0)
          let offreImageView = content?.viewWithTag(1) as! UIImageView
@@ -38,29 +38,10 @@ class FavController : UITableViewController {
          let offreAddressLabel = content?.viewWithTag(4) as! UILabel
          let offreDateLabel = content?.viewWithTag(5) as! UILabel
          offreTitreLabel.text = offre.value(forKey: "titre") as? String
-         offreIndustryLabel.text = offre.value(forKey: "industry") as? String
+         offreIndustryLabel.text = offre.value(forKey: "poste") as? String
          offreAddressLabel.text = offre.value(forKey: "address") as? String
-    
-    let hamma = offre.value(forKey: "date") as? String
-    let lastDate = String(hamma!.prefix(10))
-    let startDate = Date()
-    
-
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-
-    if let endDate = formatter.date(from: lastDate) {
-        let components = Calendar.current.dateComponents([.day], from: endDate, to: startDate)
-        if (components.day!) != 0 {
-        offreDateLabel.text = "Posted \(components.day!) days ago "
-        }
-        else {
-            offreDateLabel.text = "Posted Today "
-        }    } else {
-        print("\(lastDate) can't be converted to a Date")
-    }
-      
-    offreImageView.image = UIImage(named: offreIndustryLabel.text!)
+         offreDateLabel.text = offre.value(forKey: "date") as? String
+     
         
         
         return cell
@@ -149,6 +130,8 @@ class FavController : UITableViewController {
             print ("Error!")
         }
     }
+    
+    
     
     
     

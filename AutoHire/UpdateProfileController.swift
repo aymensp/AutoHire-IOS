@@ -9,16 +9,19 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import PKHUD
 import MobileCoreServices
 class UpdateProfileController : UIViewController {
     
     
    
       
-      let strUrl = "http://localhost:3000/parseCV"
+     
       
+    let baseUrl = Common.Global.LOCAL + "/"
     
     
+   
     @IBOutlet weak var about: UIView!
     @IBOutlet weak var browse: UIImageView!
    
@@ -36,13 +39,14 @@ class UpdateProfileController : UIViewController {
           browse.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(upload)))
           browse.isUserInteractionEnabled = true
         
-          print(Id)
+           
         
         
         
         
           // Do any additional setup after loading the view.
       }
+    
 
       @objc func upload(){
           
@@ -80,7 +84,7 @@ class UpdateProfileController : UIViewController {
            }, to: url, method: .post, headers: headers).response { resp in
             switch resp.result{
             case .failure(let error):
-            print(error)
+                HUD.flash(.labeledError(title: "Error", subtitle: "Something Goes wrong on Upload") , delay: 2.0)
             case.success( _):
             print("🥶🥶Response after upload Img: ")
                 
@@ -96,9 +100,10 @@ class UpdateProfileController : UIViewController {
         
         let defaults = UserDefaults.standard
         self.userValue = defaults.string(forKey: "usernameUser")
+       
      
         
-        AF.request("http://localhost:3000/user/Info/"+userValue! , method: .get ).responseJSON { response in
+        AF.request(self.baseUrl+"user/Info/"+userValue! , method: .get ).responseJSON { response in
             
             
             
@@ -112,12 +117,12 @@ class UpdateProfileController : UIViewController {
             
             else{
              
-                print(response.value!)
+              
           
             let item = response.value as! Dictionary<String,String>
                 
                 
-                self.skills.text = item["education"]
+                self.skills.text = item["skills"]
                 self.education.text = item["education"]
             self.experience.text = item["experience"]
                 
@@ -145,28 +150,33 @@ class UpdateProfileController : UIViewController {
         let parameters: [String: Any] = [
             
             "id" : self.Id ,
-            "education" :  education.text ,
+            "education" :  education.text  ,
             "skills" : skills.text   ,
             "experience" : experience.text
         ]
         
+     
         
-        
-        
-        AF.request("http://localhost:3000/user/edit/information" , method: .post , parameters: parameters, encoding: JSONEncoding.default ).responseJSON { response in
-            var statusCode = response.response?.statusCode
+        AF.request(self.baseUrl+"user/edit/information" , method: .post , parameters: parameters, encoding: JSONEncoding.default ).responseJSON {
+            response in
+            let statusCode = response.response?.statusCode
+           
             if statusCode == 404 {
                 
-                print("User not Found")
+                HUD.flash(.labeledError(title: "Error", subtitle: "Check your Fields") , delay: 2.0)
                 
             }
             
             else if statusCode == 409{
           
-                print("username already in use")
+                HUD.flash(.labeledError(title: "Error", subtitle: "Check your Fields") , delay: 2.0)
             
             }
-        
+            else{
+                HUD.flash(.success , delay: 1.0)
+            }
+            
+            
         }
     }
 }
@@ -219,7 +229,7 @@ extension UpdateProfileController: UIDocumentMenuDelegate,UIDocumentPickerDelega
          
             
               
-            self.Doc(url: strUrl, docData: try Data(contentsOf: myURL), parameters: ["username": self.userValue! ], fileName: self.userValue!+".pdf")
+            self.Doc(url: self.baseUrl+"parseCV", docData: try Data(contentsOf: myURL), parameters: ["username": self.userValue! ], fileName: self.userValue!+".pdf")
               self.docText.text = myURL.lastPathComponent
               
               //uploadActionDocument(documentURLs: myURL, pdfName: myURL.lastPathComponent)

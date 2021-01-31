@@ -18,7 +18,6 @@
 		543A99BA2564096C00A9306B /* AutoHireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543A99B92564096C00A9306B /* AutoHireUITests.swift */; };
 		5475A43D2565507D00F4383D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5475A43C2565507D00F4383D /* LoginController.swift */; };
 		8425F23625770C0700B70E62 /* OffreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F23525770C0700B70E62 /* OffreController.swift */; };
-		8425F24B2577326400B70E62 /* OffreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425F24A2577326400B70E62 /* OffreData.swift */; };
 		84927BFD256D54D30030AC9C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84927BFC256D54D30030AC9C /* Alamofire */; };
 		84A438F225814EAC00184D53 /* FavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A438F125814EAC00184D53 /* FavController.swift */; };
 		84A438F725818CB100184D53 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A438F625818CB100184D53 /* ProfileController.swift */; };
@@ -29,9 +28,18 @@
 		94B6F8A92579BD3300FF2BC1 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B6F8A82579BD3300FF2BC1 /* DetailsViewController.swift */; };
 		94B6F8AF2579BDE000FF2BC1 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 94B6F8AE2579BDE000FF2BC1 /* AlamofireImage */; };
 		94CD87E525784A5200471794 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 94CD87E425784A5200471794 /* SwiftyJSON */; };
-		94CD87EA25784B3400471794 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CD87E925784B3400471794 /* RegisterController.swift */; };
 		94CD87EF25784CDA00471794 /* ConfirmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CD87EE25784CDA00471794 /* ConfirmerController.swift */; };
-		94CD87F425785D9A00471794 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CD87F325785D9A00471794 /* User.swift */; };
+		E309DB132598B97D0060DEB3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E309DB122598B97D0060DEB3 /* WebKit.framework */; };
+		E338792325AFA048002C20EA /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E338792225AFA048002C20EA /* Common.swift */; };
+		E34AE8A225C2034000C5A760 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34AE8A125C2034000C5A760 /* TabBarController.swift */; };
+		E359CFE72598A01A00985E9D /* PrepareController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359CFE62598A01A00985E9D /* PrepareController.swift */; };
+		E359CFEC2598A32B00985E9D /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359CFEB2598A32B00985E9D /* VideoTableViewCell.swift */; };
+		E359CFF12598A7B900985E9D /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E359CFF02598A7B900985E9D /* VideoViewController.swift */; };
+		E369848A25AB74100043BC89 /* ManageJobController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369848925AB74100043BC89 /* ManageJobController.swift */; };
+		E369848F25ABBB600043BC89 /* ApplicantsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369848E25ABBB600043BC89 /* ApplicantsController.swift */; };
+		E369849425ABD5DB0043BC89 /* ApplicantDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E369849325ABD5DB0043BC89 /* ApplicantDetailController.swift */; };
+		E3845E61259B57FE00BD3429 /* MyJobsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3845E60259B57FE00BD3429 /* MyJobsController.swift */; };
+		E3C0A13925AB5FE20079CF85 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C0A13825AB5FE20079CF85 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +77,6 @@
 		543A99BB2564096C00A9306B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5475A43C2565507D00F4383D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8425F23525770C0700B70E62 /* OffreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffreController.swift; sourceTree = "<group>"; };
-		8425F24A2577326400B70E62 /* OffreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffreData.swift; sourceTree = "<group>"; };
 		8476CC9E258B138800ACC4B0 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		84A438F125814EAC00184D53 /* FavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavController.swift; sourceTree = "<group>"; };
 		84A438F625818CB100184D53 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -77,9 +84,18 @@
 		94A1461E257AF3D20034EC02 /* AddjobController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddjobController.swift; sourceTree = "<group>"; };
 		94B6F8A325798B2A00FF2BC1 /* AymenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AymenController.swift; sourceTree = "<group>"; };
 		94B6F8A82579BD3300FF2BC1 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		94CD87E925784B3400471794 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		94CD87EE25784CDA00471794 /* ConfirmerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmerController.swift; sourceTree = "<group>"; };
-		94CD87F325785D9A00471794 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E309DB122598B97D0060DEB3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		E338792225AFA048002C20EA /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		E34AE8A125C2034000C5A760 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E359CFE62598A01A00985E9D /* PrepareController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareController.swift; sourceTree = "<group>"; };
+		E359CFEB2598A32B00985E9D /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
+		E359CFF02598A7B900985E9D /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		E369848925AB74100043BC89 /* ManageJobController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageJobController.swift; sourceTree = "<group>"; };
+		E369848E25ABBB600043BC89 /* ApplicantsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantsController.swift; sourceTree = "<group>"; };
+		E369849325ABD5DB0043BC89 /* ApplicantDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantDetailController.swift; sourceTree = "<group>"; };
+		E3845E60259B57FE00BD3429 /* MyJobsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJobsController.swift; sourceTree = "<group>"; };
+		E3C0A13825AB5FE20079CF85 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E309DB132598B97D0060DEB3 /* WebKit.framework in Frameworks */,
 				94CD87E525784A5200471794 /* SwiftyJSON in Frameworks */,
 				84F9B2EC25804FB0000484DE /* PKHUD in Frameworks */,
 				84927BFD256D54D30030AC9C /* Alamofire in Frameworks */,
@@ -119,6 +136,7 @@
 				543A99AD2564096C00A9306B /* AutoHireTests */,
 				543A99B82564096C00A9306B /* AutoHireUITests */,
 				543A99922564096B00A9306B /* Products */,
+				E309DB112598B97D0060DEB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -145,16 +163,23 @@
 				543A99A52564096C00A9306B /* Info.plist */,
 				543A999D2564096B00A9306B /* AutoHire.xcdatamodeld */,
 				8425F23525770C0700B70E62 /* OffreController.swift */,
-				8425F24A2577326400B70E62 /* OffreData.swift */,
-				94CD87E925784B3400471794 /* RegisterController.swift */,
 				94CD87EE25784CDA00471794 /* ConfirmerController.swift */,
-				94CD87F325785D9A00471794 /* User.swift */,
 				94B6F8A325798B2A00FF2BC1 /* AymenController.swift */,
 				94B6F8A82579BD3300FF2BC1 /* DetailsViewController.swift */,
 				94A1461E257AF3D20034EC02 /* AddjobController.swift */,
 				84A438F125814EAC00184D53 /* FavController.swift */,
 				84A438F625818CB100184D53 /* ProfileController.swift */,
 				84A438FB258195ED00184D53 /* UpdateProfileController.swift */,
+				E359CFE62598A01A00985E9D /* PrepareController.swift */,
+				E359CFEB2598A32B00985E9D /* VideoTableViewCell.swift */,
+				E359CFF02598A7B900985E9D /* VideoViewController.swift */,
+				E3845E60259B57FE00BD3429 /* MyJobsController.swift */,
+				E3C0A13825AB5FE20079CF85 /* SettingsTableViewController.swift */,
+				E369848925AB74100043BC89 /* ManageJobController.swift */,
+				E369848E25ABBB600043BC89 /* ApplicantsController.swift */,
+				E369849325ABD5DB0043BC89 /* ApplicantDetailController.swift */,
+				E338792225AFA048002C20EA /* Common.swift */,
+				E34AE8A125C2034000C5A760 /* TabBarController.swift */,
 			);
 			path = AutoHire;
 			sourceTree = "<group>";
@@ -175,6 +200,14 @@
 				543A99BB2564096C00A9306B /* Info.plist */,
 			);
 			path = AutoHireUITests;
+			sourceTree = "<group>";
+		};
+		E309DB112598B97D0060DEB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E309DB122598B97D0060DEB3 /* WebKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,21 +354,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				84A438FC258195ED00184D53 /* UpdateProfileController.swift in Sources */,
+				E3845E61259B57FE00BD3429 /* MyJobsController.swift in Sources */,
 				543A99992564096B00A9306B /* ViewController.swift in Sources */,
 				84A438F225814EAC00184D53 /* FavController.swift in Sources */,
 				8425F23625770C0700B70E62 /* OffreController.swift in Sources */,
+				E34AE8A225C2034000C5A760 /* TabBarController.swift in Sources */,
 				543A99952564096B00A9306B /* AppDelegate.swift in Sources */,
+				E369848A25AB74100043BC89 /* ManageJobController.swift in Sources */,
+				E359CFF12598A7B900985E9D /* VideoViewController.swift in Sources */,
 				94A1461F257AF3D20034EC02 /* AddjobController.swift in Sources */,
 				84A438F725818CB100184D53 /* ProfileController.swift in Sources */,
+				E359CFE72598A01A00985E9D /* PrepareController.swift in Sources */,
 				94B6F8A425798B2A00FF2BC1 /* AymenController.swift in Sources */,
 				543A999F2564096B00A9306B /* AutoHire.xcdatamodeld in Sources */,
+				E338792325AFA048002C20EA /* Common.swift in Sources */,
 				94CD87EF25784CDA00471794 /* ConfirmerController.swift in Sources */,
 				543A99972564096B00A9306B /* SceneDelegate.swift in Sources */,
-				8425F24B2577326400B70E62 /* OffreData.swift in Sources */,
 				5475A43D2565507D00F4383D /* LoginController.swift in Sources */,
-				94CD87EA25784B3400471794 /* RegisterController.swift in Sources */,
-				94CD87F425785D9A00471794 /* User.swift in Sources */,
+				E369848F25ABBB600043BC89 /* ApplicantsController.swift in Sources */,
 				94B6F8A92579BD3300FF2BC1 /* DetailsViewController.swift in Sources */,
+				E369849425ABD5DB0043BC89 /* ApplicantDetailController.swift in Sources */,
+				E359CFEC2598A32B00985E9D /* VideoTableViewCell.swift in Sources */,
+				E3C0A13925AB5FE20079CF85 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +549,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A9YQLQD346;
 				INFOPLIST_FILE = AutoHire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -526,6 +567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A9YQLQD346;
 				INFOPLIST_FILE = AutoHire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

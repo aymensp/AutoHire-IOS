@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import PKHUD
 class AddjobController : UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     var userValue : String?
     
@@ -15,7 +16,7 @@ class AddjobController : UIViewController, UIPickerViewDelegate, UIPickerViewDat
     
     @IBOutlet weak var TYPEE: UITextField!
     @IBOutlet weak var DESCRIPTION: UITextField!
-   
+    let baseUrl = Common.Global.LOCAL + "/"
     @IBOutlet weak var titleError: UILabel!
     @IBOutlet weak var SALARY: UITextField!
     @IBOutlet weak var TYPE: UIPickerView!
@@ -60,7 +61,7 @@ class AddjobController : UIViewController, UIPickerViewDelegate, UIPickerViewDat
         
         ) {
             
-            print("please check your information")
+            HUD.flash(.labeledError(title: "Error", subtitle: "Check Your information") , delay: 1.0)
             
 
         }
@@ -90,25 +91,26 @@ class AddjobController : UIViewController, UIPickerViewDelegate, UIPickerViewDat
         "company": InDustry,
         "jobTime": JobTIME ,
         "salary": SalARy,
-        "longitude" : "10.164723",
-        "latitude" : "36.866537"
+        "longitude" : "2.4169240",
+        "latitude" : "48.7000940"
          ]
          
          
-         AF.request("http://localhost:3000/offre/Newoffre", method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            AF.request(self.baseUrl+"offre/Newoffre", method: .post, parameters: parameters, encoding: JSONEncoding.default)
              .responseString { response in
                  var statusCode = response.response?.statusCode
                
                  
                  if statusCode == 201
                    {
-                    self.performSegue(withIdentifier: "toDetails", sender: self)
-                     
+                    
+                    self.performSegue(withIdentifier: "toDetailss", sender: self)
+                    HUD.flash(.success , delay: 1.0)
                    }
                    else {
                     
-                     
-                     print("Check your Information")
+                    HUD.flash(.labeledError(title: "Error", subtitle: "Check Your information") , delay: 2.0)
+                    
                     
                     
                    }
